@@ -1,7 +1,14 @@
-import express from "express";
+import * as dotenv from "dotenv";
+import express, { Request, Response } from "express";
+import routes from "./routes/Index";
+
+dotenv.config();
 const app = express();
-const PORT = 3001;
-app.listen(PORT, function 
-    () {
+app.use(express.json());
+const PORT = 3002;
+
+app.listen(PORT, function () {
   console.log(`Testa ai na ${PORT}`);
 });
+
+app.use(routes);
