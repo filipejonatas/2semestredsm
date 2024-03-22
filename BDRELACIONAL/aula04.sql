@@ -8,38 +8,47 @@ create table tbl_titulo (codigo_titulo integer primary key, titulo text not null
 create table tbl_livros (cod_livro integer PRIMARY KEY, codigo_titulo integer REFERENCES tbl_titulo(codigo_titulo), status chk_status DEFAULT 'DISPONIVEL');
 create table tbl_emprestimo (numero_emprestimo integer PRIMARY KEY, codigo_cliente integer REFERENCES tbl_cliente(codigo_cliente), codigo_livro integer REFERENCES tbl_livros(cod_livro));
 -- Inserir dados na tabela tbl_cliente
-
+INSERT INTO tbl_cliente (codigo_cliente,nome,cidade,endereco) 
+VALUES(1,'Joao Silva','São Paulo','Rua A,123'),(2,'Maria Santos','Rio de janeiro','Av B, 456'),
+(3,'Pedro Almeida','Belo Horizonte','Rua C,189'),(4,'Ana Oliveira','Salvador','Av D,1011'),
+(5,'Carlos Lima','Brasilia','Rua E, 1213');
 
 -- Inserir dados na tabela tbl_titulo
-
+INSERT INTO tbl_titulo(codigo_titulo,titulo,descricao,categoria)
+VALUES(1,'Aventuras Urbanas','Uma história emocionante','DRAMA'),(2,'Mistérios Antigos','Enigmas por resolver','COMEDIA')
+(3,'Amor nas estrelas','Um romance intergalático','DRAMA'),(4,'Código Enigmático','Segredos Ocultos','COMEDIA'),
+(5,'Histórias Perdidas','Contos Esquecidos','DRAMA');
 
 -- Inserir dados na tabela tbl_livros
-
+INSERT INTO tbl_livros(codigo_livro,codigo_titulo,status)
+VALUES(1,1,'DISPONIVEL'),(2,1,'ALUGADO'),(3,2,'DISPONIVEL'),(4,3,'ALUGADO'),(5,4,'DISPONIVEL');
 
 -- Inserir dados na tabela tbl_emprestimo
-
+INSERT INTO tbl_emprestimo(numero_emprestimo,codigo_cliente,codigo_livro)
+VALUES (1,1,2),(2,2,4),(3,3,1),(4,4,5),(5,5,3);
 
 --selecionar todos os clientes
-
+SELECT * FROM tbl_cliente;
 
 --Selecionar os clientes que moram em São Paulo
-
+SELECT * FROM tbl_cliente WHERE cidade == 'São Paulo';
 
 --Selecionar os clientes onde o código é maior que 3
-
+SELECT * FROM tbl_cliente WHERE codigo_cliente > 3;
 
 --Selecionar todos os títulos
-
+SELECT * FROM tbl_titulo;
 
 --crie uma tabela chamada tbl_cliente2 com uma coluna integer chamada código
+CREATE TABLE tbl_cliente2 (código integer);
 
 --Copie todos dos códigos da tbl_cliente para essa nova tabela usando o SQL Insert.
-
+INSERT INTO tbl_cliente2
 
 --Atualize todos os livros alugados para disponivel
-
+UPDATE tbl_livros SET status = 'DISPONIVEL' WHERE status == 'ALUGADOS';
 
 --Delete todos as linhas da tabela tbl_cliente2 onde o código for maior que 3
-
+DELETE FROM tbl_cliente2 WHERE código > 3;
 
 
